@@ -11,5 +11,7 @@
 - 消息队列
 
 ###4. 代码解析
-- 顾客A 和 顾客B 关注报社， 报社有一个集合，存了报社A和报社B
-- 报社有新消息，则通知A和B
+- 顾客A 和 顾客B 实现了 <font color=ORANGE>Customer 顾客接口</font>
+- <font color=ORANGE>报社结构体</font> 的属性里有一个数组，为<font color=ORANGE>[ ]Customer</font>
+- 当顾客关注报社的时候，把顾客存到<font color=ORANGE>报社结构体</font>的<font color=ORANGE>[ ]Customer</font>中
+- 当报社有消息时，通知结构体中的顾客
