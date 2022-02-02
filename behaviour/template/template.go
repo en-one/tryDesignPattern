@@ -2,13 +2,6 @@ package template
 
 import "fmt"
 
-/*
-模板方法 template
-
-   意图：父类定义骨架，子类实现某些细节。
-   关键：通用步骤在抽象类中实现，变化的步骤在具体子类中实现
-*/
-
 type Cook interface {
 	open()
 	fire()
@@ -45,7 +38,7 @@ func (j *YouMaiCai) cooke() {
 	fmt.Println("做鸡蛋")
 }
 
-// 封装所有步骤
+// DoCook 封装所有步骤
 func DoCook(cook Cook) {
 	cook.open()
 	cook.fire()
