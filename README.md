@@ -14,8 +14,8 @@
 结构型
 	适配器
 	桥接
-	门面
-	享元 flyweight
+	门面      facade
+	享元      flyweight
 	组合
 	装饰
 	代理
