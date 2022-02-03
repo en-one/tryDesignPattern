@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-// 存储策略
+// StorageStrategy 存储策略
 type StorageStrategy interface {
 	Save(name string, data []byte) error
 }
