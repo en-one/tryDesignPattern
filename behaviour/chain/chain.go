@@ -8,6 +8,24 @@ type SensitiveWordFilter interface {
 	Filter(content string) bool
 }
 
+// AdSensitiveWordFilter 广告
+type AdSensitiveWordFilter struct{}
+
+// Filter 实现过滤算法
+func (f *AdSensitiveWordFilter) Filter(content string) bool {
+	// TODO: 实现算法
+	return false
+}
+
+// PoliticalWordFilter 政治敏感
+type PoliticalWordFilter struct{}
+
+// Filter 实现过滤算法
+func (f *PoliticalWordFilter) Filter(content string) bool {
+	// TODO: 实现算法
+	return true
+}
+
 // Chain 职责链
 type Chain struct {
 	filters []SensitiveWordFilter
@@ -26,22 +44,4 @@ func (c *Chain) Filter(content string) bool {
 		}
 	}
 	return false
-}
-
-// AdSensitiveWordFilter 广告
-type AdSensitiveWordFilter struct{}
-
-// Filter 实现过滤算法
-func (f *AdSensitiveWordFilter) Filter(content string) bool {
-	// TODO: 实现算法
-	return false
-}
-
-// PoliticalWordFilter 政治敏感
-type PoliticalWordFilter struct{}
-
-// Filter 实现过滤算法
-func (f *PoliticalWordFilter) Filter(content string) bool {
-	// TODO: 实现算法
-	return true
 }
