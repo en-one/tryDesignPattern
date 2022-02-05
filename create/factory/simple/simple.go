@@ -2,7 +2,7 @@ package simple
 
 import "fmt"
 
-type FruitFactory interface {
+type Fruit interface {
 	Introduce(name string) string
 }
 
@@ -19,7 +19,7 @@ func (Banana) Introduce(name string) string {
 }
 
 // NewFruitFactory 当我们以NewXXX的方式创建对象/接口的时候，当返回为接口的时候，就是简单工厂模式
-func NewFruitFactory(t string) FruitFactory {
+func NewFruit(t string) Fruit {
 	switch t {
 	case "Apple":
 		return Apple{}

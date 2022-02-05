@@ -1,40 +1,24 @@
 package abstract
 
-import "fmt"
+import (
+	"factory/simple"
+)
 
-// FruitFactory FruitFactory
-type Fruit interface {
-	Introduce()
-}
-
-type Apple struct{}
-
-func (A Apple) Introduce() {
-	fmt.Println("i was an apple")
-}
-
-type Banana struct{}
-
-func (B Banana) Introduce() {
-	fmt.Println("i want a banner")
-}
-
-//FruitAbstractFactory 工厂方法接口
 type FruitAbstractFactory interface {
-	CreateApple() Fruit
-	CreateBanner() Fruit
+	CreateApple() simple.Fruit
+	CreateBanner() simple.Fruit
 }
 
-type SimpleFruitFactory struct{}
+type AbstractFruitFactory struct{}
 
 func NewSimpleFruitFactory() FruitAbstractFactory {
-	return &SimpleFruitFactory{}
+	return &AbstractFruitFactory{}
 }
 
-func (s *SimpleFruitFactory) CreateApple() Fruit {
-	return Apple{}
+func (s *AbstractFruitFactory) CreateApple() simple.Fruit {
+	return &simple.Apple{}
 }
 
-func (s *SimpleFruitFactory) CreateBanner() Fruit {
-	return Banana{}
+func (s *AbstractFruitFactory) CreateBanner() simple.Fruit {
+	return &simple.Banana{}
 }

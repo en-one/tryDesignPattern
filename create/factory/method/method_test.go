@@ -13,7 +13,7 @@ func TestNewFruitFactoryMethod(t *testing.T) {
 	tests := []struct {
 		name string
 		args args
-		want FruitFactoryMethod
+		want FruitFactory
 	}{
 		{
 			name: "apple",
@@ -29,8 +29,8 @@ func TestNewFruitFactoryMethod(t *testing.T) {
 
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			if got := NewFruitFactoryMethod(tt.args.t); !reflect.DeepEqual(got, tt.want) {
-				t.Errorf("NewFruitFactoryMethod() = %v, want %v", got, tt.want)
+			if got := NewFruitFactory(tt.args.t); !reflect.DeepEqual(got, tt.want) {
+				t.Errorf("NewFruitFactory() = %v, want %v", got, tt.want)
 			}
 		})
 	}

@@ -1,6 +1,7 @@
 package abstract
 
 import (
+	"factory/simple"
 	"reflect"
 	"testing"
 )
@@ -8,16 +9,16 @@ import (
 func TestSimpleFruitFactory_CreateApple(t *testing.T) {
 	tests := []struct {
 		name string
-		want Apple
+		want simple.Apple
 	}{
 		{
 			name: "apple",
-			want: Apple{},
+			want: simple.Apple{},
 		},
 	}
 	for _, tt := range tests {
 		t.Run(tt.name, func(t *testing.T) {
-			j := SimpleFruitFactory{}
+			j := AbstractFruitFactory{}
 			if got := j.CreateApple(); !reflect.DeepEqual(got, tt.want) {
 				t.Errorf("CreateRuleParser() = %v, want %v", got, tt.want)
 			}
