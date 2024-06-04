@@ -13,10 +13,10 @@
 	
 结构型
 	适配器
-	桥接
+	桥接      bridge
 	门面      facade
 	享元      flyweight
-	组合
+	组合      composite
 	装饰
 	代理
 	
