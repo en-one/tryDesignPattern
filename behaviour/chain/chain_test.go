@@ -16,11 +16,20 @@ func Test_chan1(t *testing.T) {
 	fmt.Println(res, err)
 }
 
-// func Test_chan12t *testing.T) {
-// 	chain := &Chain{}
-// 	chain.AddFilter(&AdSensitiveWordFilter{})
-// 	assert.Equal(t, false, chain.Filter("test"))
+// 病人看病的例子。前台->医生->药房->收银.
+func Test_chan2(t *testing.T) {
+	cashier := &Cashier{}
 
-// 	chain.AddFilter(&PoliticalWordFilter{})
-// 	assert.Equal(t, true, chain.Filter("test"))
-// }
+	medical := &Medical{}
+	medical.setNext(cashier)
+
+	doctor := &Doctor{}
+	doctor.setNext(medical)
+
+	reception := &Reception{}
+	reception.setNext(doctor)
+
+	patient := &Patient{name: "josiah"}
+	reception.execute(patient)
+
+}

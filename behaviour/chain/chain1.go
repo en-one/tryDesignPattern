@@ -35,9 +35,7 @@ func (v validator) HelloWorldChain(name string) (string, error) {
 }
 
 // 定义一个日志服务 logger->validator->basic
-type logger struct {
-	next IService
-}
+type logger struct{ next IService }
 
 func (l logger) HelloWorldChain(name string) (string, error) {
 	res, err := l.next.HelloWorldChain(name)
