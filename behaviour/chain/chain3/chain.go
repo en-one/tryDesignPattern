@@ -23,9 +23,9 @@ type patient struct {
 
 // IDepartment 接口定义了处理病人请求的方法,每个部门处理自己的任务，同时可以将任务向下一个链路传递
 type IDepartment interface {
-	Execute(*patient) error
-	SetNext(IDepartment) IDepartment
-	Do(*patient) error
+	Execute(*patient) error          // 执行任务
+	SetNext(IDepartment) IDepartment // 链路传递
+	Do(*patient) error               // 具体任务逻辑
 }
 
 // Next 结构体用于实现责任链模式中的下一个处理器
@@ -38,9 +38,10 @@ func (n *Next) SetNext(handler IDepartment) IDepartment {
 	return handler
 }
 
+func (n *Next) Do(patient *patient) error { return nil }
+
 func (n *Next) Execute(patient *patient) (err error) {
-	// 由于go无继承的概念, 只能用组合，组合跟继承不一样，这里如果Next 实现了 Do 方法，那么匿名组合它的具体处理类型，执行Execute的时候，调用的还是内部Next对象的Do方法
-	// 调用不到外部类型的 Do 方法，所以 Next 不能实现 Do 方法
+	// 需要哨兵节点
 	if n.nextHandler != nil {
 		if err = n.nextHandler.Do(patient); err != nil {
 			return
@@ -52,18 +53,7 @@ func (n *Next) Execute(patient *patient) (err error) {
 	return
 }
 
-func (n *Next) Do(c *patient) (err error) {
-	return
-}
-
-// StartHandler 不做操作，作为第一个Handler向下转发请求
-// Go 语法限制，抽象公共逻辑到通用Handler后，并不能跟继承一样让公共方法调用不通子类的实现
+// StartHandler 不做操作，作为第一个Handler向下转发请求。如果没有这个哨兵节点，会导致最后一个对象的next无法执行
 type StartHandler struct {
 	Next
 }
-
-// Do 空Handler的Do
-// func (h *StartHandler) Do(c *patient) (err error) {
-// 	// 空Handler 这里什么也不做 只是载体 do nothing...
-// 	return
-// }
