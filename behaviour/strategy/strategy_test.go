@@ -1,13 +1,22 @@
 package strategy
 
-import "testing"
+import (
+	"testing"
+)
 
 func Test_demo(t *testing.T) {
-	normalStrategy := "file"
-	storage, _ := NewStorageStrategy(normalStrategy)
-	storage.Save("普通保存", []byte{})
+	lfu := &Lfu{}
+	cache := initCache(lfu)
 
-	encryptStrategy := "encrypt_file"
-	storage, _ = NewStorageStrategy(encryptStrategy)
-	storage.Save("加密保存", []byte{})
+	cache.Add("a", "1")
+	cache.Add("b", "2")
+	cache.Add("c", "3")
+
+	cache.SetEvictionAlgo(&Fifo{})
+
+	cache.Add("d", "4")
+
+	cache.SetEvictionAlgo(&Lru{})
+	cache.Add("e", "5")
+
 }
