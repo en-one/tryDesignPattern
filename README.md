@@ -5,11 +5,13 @@
 
 ```text
 创建型
-	工厂（包含简单方法）
-	抽象方法
-	单例
-	建造者
-	原型
+	工厂（包含简单方法）factory method
+	抽象方法 factory abstract
+	单例  singleton
+	建造者   builder
+	原型 	prototype
+	
+
 	
 结构型
 	适配器
